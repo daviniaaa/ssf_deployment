@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--
+	TODO: Task 1, Task 2, Task 3
+-->
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Login</title>
+	</head>
+	<body>
+
+		<h2>Please Login</h2>
+		<form data-th-object="${user}" data-th-action="@{/login}" method="post" 
+			enctype="application/x-www-form-urlencoded">
+			<table>
+				<tr>
+					<td> 
+						<label for="username">Username:</label> 
+					</td>
+					<td>
+						<input type="text" field="*{username}" name="username" id="username" size="30" 
+								placeholder="Please type in your username" >
+						<span class = "error" data-th-if = "${#fields.hasErrors('username')}" 
+								data-th-errors = "*{username}" style="color: red;"></span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="password">Password:</label>
+					</td>
+					<td>
+						<input type="password" field="*{password}" name="password" id="password" size="30" 
+								placeholder="Please type in your password">
+						<span class = "error" data-th-if = "${#fields.hasErrors('password')}" 
+								data-th-errors = "*{password}" style="color: red;"></span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div data-th-if="${captcha}">
+							<h1 data-th-text="${equation}"></h1>
+							<p>
+								Answer: 
+								<input type="text" field="${captcharesponse.answer}" 
+								name="answer" id="answer"/>
+							</p>
+						</div>
+					</td>
+					
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<button>Login</button>
+					</td>
+				</tr>
+			</table>
+		</form>		
+	</body>
+</html>
